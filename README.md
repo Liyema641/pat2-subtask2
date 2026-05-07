@@ -1,10 +1,64 @@
 # pat2-subtask2
 Morse Code 
 
-Before the 1830s, long-distance communication relied on physical mail or line-of-sight signals like flags. Samuel Morse and Alfred Vail invented Morse code to make the newly created electrical telegraph useful.
-The Limitation: Telegraph wires could only transmit raw electrical current—essentially turning a switch "on" or "off." They could not send voices or written letters.
-The Need: Inventors needed a universal language to turn those raw electrical pulses into meaningful words.
-The Impact: It allowed messages to travel instantly across continents and oceans for the first time in human history.
-The system breaks the alphabet down into a binary language using two main elements based on duration:The Dot (•): A short, quick signal.The Dash (—): A longer signal, precisely three times the duration of a dot.The Rule of EfficiencyTo make typing fast, Morse and Vail counted letters in a local printing press. They assigned the shortest codes to the most common letters, and the longest codes to rare letters:
-E (most common): • (one dot)T (very common): — (one dash)Q (rare): ——•— (two dashes, a dot, a dash)Timing and SpacingThe system relies on strict timing (pauses) so the listener can tell where letters and words end:Between elements: 
-A pause equal to one dot separates dots and dashes within the same letter.Between letters: A pause equal to three dots separates individual letters.Between words: A pause equal to seven dots separates entire words.
+/*
+* Name: Liyema
+* Surname: Goboodwana
+* Group: ITR3
+* Program: Morse Code Sender
+* Student Number: 172502018
+*/
+
+#include <iostream>
+#include <string>
+#include <map>
+#include <Algorithm>
+#include <limits>
+
+#include <iostream>
+#include <string>
+#include <map>
+#include <sstream>
+
+using namespace std;
+
+map<char, string> morseMap = {
+    {'A', ".-"}, {'B', "-..."}, {'C', "-.-."}, {'D', "-.."}, {'E', "."},
+    {'F', "..-."}, {'G', "--."}, {'H', "...."}, {'I', ".."}, {'J', ".---"},
+    {'K', "-.-"}, {'L', ".-.."}, {'M', "--"}, {'N', "-."}, {'O', "---"},
+    {'P', ".--."}, {'Q', "--.-"}, {'R', ".-."}, {'S', "..."}, {'T', "-"},
+    {'U', "..-"}, {'V', "...-"}, {'W', ".--"}, {'X', "-..-"}, {'Y', "-.--"},
+    {'Z', "--.."}, {'1', ".----"}, {'2', "..---"}, {'3', "...--"}, {'4', "....-"},
+    {'5', "....."}, {'6', "-...."}, {'7', "--..."}, {'8', "---.."}, {'9', "----."},
+    {'0', "-----"}, {'.', ".-.-.-"}, {',', "--..--"}, {'?', "..--.."}, {' ', "/"}
+};
+
+string encryptSentence(string text) {
+    string cipher = "";
+    for (char c : text) {
+        c = toupper(c);
+        if (morseMap.count(c)) {
+            cipher += morseMap[c] + " "; // Add space between letters
+        }
+    }
+    return cipher;
+}
+
+int main() {
+    string userSentence;
+
+    cout << "Enter a full sentence to translate: ";
+    // getline reads the entire line, including spaces, until you hit Enter
+    getline(cin, userSentence);
+
+    string result = encryptSentence(userSentence);
+
+    cout << "\nYour Morse Code:\n" << result << endl;
+    cout << "\n(Note: '/' represents the space between words)" << endl;
+
+    return 0;
+}
+
+
+
+
