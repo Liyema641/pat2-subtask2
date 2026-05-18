@@ -10,51 +10,47 @@ Morse Code
 */
 
 #include <iostream>
-#include <string>
-#include <map>
-#include <Algorithm>
-#include <limits>
-
-#include <iostream>
-#include <string>
-#include <map>
-#include <sstream>
+#include <iomanip> // Required for fixed and setprecision
 
 using namespace std;
 
-map<char, string> morseMap = {
-    {'A', ".-"}, {'B', "-..."}, {'C', "-.-."}, {'D', "-.."}, {'E', "."},
-    {'F', "..-."}, {'G', "--."}, {'H', "...."}, {'I', ".."}, {'J', ".---"},
-    {'K', "-.-"}, {'L', ".-.."}, {'M', "--"}, {'N', "-."}, {'O', "---"},
-    {'P', ".--."}, {'Q', "--.-"}, {'R', ".-."}, {'S', "..."}, {'T', "-"},
-    {'U', "..-"}, {'V', "...-"}, {'W', ".--"}, {'X', "-..-"}, {'Y', "-.--"},
-    {'Z', "--.."}, {'1', ".----"}, {'2', "..---"}, {'3', "...--"}, {'4', "....-"},
-    {'5', "....."}, {'6', "-...."}, {'7', "--..."}, {'8', "---.."}, {'9', "----."},
-    {'0', "-----"}, {'.', ".-.-.-"}, {',', "--..--"}, {'?', "..--.."}, {' ', "/"}
-};
-
-string encryptSentence(string text) {
-    string cipher = "";
-    for (char c : text) {
-        c = toupper(c);
-        if (morseMap.count(c)) {
-            cipher += morseMap[c] + " "; // Add space between letters
-        }
-    }
-    return cipher;
-}
+const int NUM_EXPERIMENTS = 3;
+const int NUM_READINGS = 3;
 
 int main() {
-    string userSentence;
+    int i, j; // Changed from char to int for loop counters
+    double readingValue, total, average;
 
-    cout << "Enter a full sentence to translate: ";
-    // getline reads the entire line, including spaces, until you hit Enter
-    getline(cin, userSentence);
+    for (i = 1; i <= NUM_EXPERIMENTS; i++) {
+        total = 0;
+        cout << "\nEXPERIMENT " << i << endl;
+        cout << "==================\n";
 
-    string result = encryptSentence(userSentence);
+        for (j = 1; j <= NUM_READINGS; j++) {
+            cout << "Enter reading " << j << " value: ";
+            cin >> readingValue; // Fixed variable name
+            total = total + readingValue; // Fixed subtraction error
+        }
 
-    cout << "\nYour Morse Code:\n" << result << endl;
-    cout << "\n(Note: '/' represents the space between words)" << endl;
+        average = total / NUM_READINGS; // Fixed incorrect formula
+
+        // Evaluation logic directly inside the loop
+        if (average < 100) { // Fixed comparison operator to match the text
+            cout << "Experiment " << i << " average: "
+                 << fixed << setprecision(2)
+                 << average << " is Below acceptable range\n";
+        } 
+        else if (average >= 100 && average <= 300) { // Fixed 'OR' to logical '&&'
+            cout << "Experiment " << i << " average: "
+                 << fixed << setprecision(2)
+                 << average << " is Within acceptable range\n";
+        } 
+        else {
+            cout << "Experiment " << i << " average: "
+                 << fixed << setprecision(2)
+                 << average << " is Above acceptable range\n";
+        }
+    }
 
     return 0;
 }
