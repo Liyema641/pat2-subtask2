@@ -5,7 +5,6 @@ Morse Code
 * Name: Liyema
 * Surname: Goboodwana
 * Group: ITR3
-* Program: Morse Code Sender
 * Student Number: 172502018
 */
 
